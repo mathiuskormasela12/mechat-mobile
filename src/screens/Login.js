@@ -12,6 +12,7 @@ import {
   Button,
   MiniLoading,
   Alert,
+  SafeAreaView,
 } from '../components';
 
 class Login extends Component {
@@ -45,7 +46,7 @@ class Login extends Component {
     return (
       <Fragment>
         <ScrollView>
-          <View style={styles.hero}>
+          <SafeAreaView style={styles.hero}>
             <Container style={styles.container}>
               <View style={styles.header}>
                 <AuthHeader />
@@ -73,7 +74,7 @@ class Login extends Component {
                 </Text>
               </View>
             </Container>
-          </View>
+          </SafeAreaView>
         </ScrollView>
       </Fragment>
     );

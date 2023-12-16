@@ -20,6 +20,7 @@ import {Header, Wrapper, HeaderChat} from './components';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import Login from './screens/Login';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,52 +64,54 @@ export default function StackScreen() {
   return (
     <Fragment>
       <StatusBar style='dark' />
-    <SafeAreaView style={styles.page} onLayout={onLayoutRootView}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Auth' screenOptions={{
-          contentStyle: {
-            backgroundColor: 'white'
-          }
-        }}>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{header: () => <Header />}}
-          />
-          <Stack.Screen
-            name="Auth"
-            component={Auth}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Email Code"
-            component={EmailCode}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Full Name"
-            component={FullName}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Chat Room"
-            component={ChatRoom}
-            options={{header: () => <HeaderChat />}}
-          />
-          <Stack.Screen
-            name="Profile"
-            component={Profile}
-            options={{headerShown: false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-      {showWrapper && <Wrapper />}
-    </SafeAreaView>
+      <SafeAreaProvider style={styles.page} onLayout={onLayoutRootView}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Auth' screenOptions={{
+            contentStyle: {
+              backgroundColor: 'white'
+            }
+          }}>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Auth"
+              component={Auth}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Email Code"
+              component={EmailCode}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Full Name"
+              component={FullName}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Chat Room"
+              component={ChatRoom}
+              options={{
+                headerShown: false
+              }}
+            />
+            <Stack.Screen
+              name="Profile"
+              component={Profile}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+        {showWrapper && <Wrapper />}
+      </SafeAreaProvider>
     </Fragment>
   );
 }

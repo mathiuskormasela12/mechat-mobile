@@ -14,3 +14,4 @@ export * from './modal-input/ModalInput';
 export * from './modal-button/ModalButton';
 export * from './header-chat/HeaderChat';
 export * from './chat-bubble/ChatBubble';
+export * from './safe-area-view/SafeAreaView'

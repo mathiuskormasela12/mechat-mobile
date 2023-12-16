@@ -1,6 +1,6 @@
 // ===== Profile
 // import all modules
-import React, {Fragment, useState} from 'react';
+import React, { useState} from 'react';
 import {
   View,
   Text,
@@ -18,7 +18,7 @@ import {launchCameraAsync, launchImageLibraryAsync} from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // import all component
-import {Container, ModalInput, ModalButton, Alert} from '../components';
+import {Container, ModalInput, ModalButton, Alert, SafeAreaView} from '../components';
 
 export default function Profile(props) {
   const route = useRoute();
@@ -79,7 +79,7 @@ export default function Profile(props) {
   }
 
   return (
-    <Fragment>
+    <SafeAreaView>
       <Modal animationType="slide" transparent={true} visible={isVisible}>
         <View style={styles.modalContainer}>
           <ScrollView>
@@ -365,7 +365,7 @@ export default function Profile(props) {
           </View>
         )}
       </ScrollView>
-    </Fragment>
+    </SafeAreaView>
   );
 }
 

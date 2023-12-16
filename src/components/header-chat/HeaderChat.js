@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: 'white',
     width: '100%',
-    elevation: 2,
   },
   container: {
     width: '88%',

@@ -1,6 +1,6 @@
 // ===== Auth
 // import all modules
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {View, Text, ScrollView, StyleSheet, Dimensions} from 'react-native';
 
 // import all components
@@ -12,6 +12,7 @@ import {
   Button,
   MiniLoading,
   Alert,
+  SafeAreaView,
 } from '../components';
 
 class Auth extends Component {
@@ -43,7 +44,7 @@ class Auth extends Component {
 
   render() {
     return (
-      <Fragment>
+      <SafeAreaView>
         <ScrollView>
           <View style={styles.hero}>
             <Container style={styles.container}>
@@ -87,7 +88,7 @@ class Auth extends Component {
             </Container>
           </View>
         </ScrollView>
-      </Fragment>
+      </SafeAreaView>
     );
   }
 }

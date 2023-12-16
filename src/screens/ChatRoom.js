@@ -4,7 +4,7 @@ import React, {Component, Fragment} from 'react';
 import {View, TouchableOpacity, FlatList, StyleSheet} from 'react-native';
 
 // import all components
-import {TextField, Container, ChatBuble} from '../components';
+import {TextField, Container, ChatBuble, SafeAreaView, HeaderChat} from '../components';
 
 // import assets
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -33,39 +33,42 @@ class ChatRoom extends Component {
   render() {
     return (
       <Fragment>
-        <View style={styles.hero}>
-          <Container style={styles.containerPadding}>
-            <FlatList
-              data={this.state.chats}
-              keyExtractor={(item, index) => String(index)}
-              renderItem={({item}) => (
-                <ChatBuble
-                  mine={item.mine}
-                  message={item.message}
-                  time={item.time}
-                />
-              )}
-            />
-          </Container>
-          <View style={styles.chatFooter}>
-            <Container style={styles.container}>
-              <View style={styles.row}>
-                <View style={styles.inputCol}>
-                  <TextField
-                    keyboardType="default"
-                    placeholder="Type Your Message ...."
-                    height={45}
+        <SafeAreaView>
+          <HeaderChat />
+          <View style={styles.hero}>
+            <Container style={styles.containerPadding}>
+              <FlatList
+                data={this.state.chats}
+                keyExtractor={(item, index) => String(index)}
+                renderItem={({item}) => (
+                  <ChatBuble
+                    mine={item.mine}
+                    message={item.message}
+                    time={item.time}
                   />
-                </View>
-                <View style={styles.btnCol}>
-                  <TouchableOpacity style={styles.contact}>
-                    <Icon name="send-outline" size={15} color="white" />
-                  </TouchableOpacity>
-                </View>
-              </View>
+                )}
+              />
             </Container>
+            <View style={styles.chatFooter}>
+              <Container style={styles.container}>
+                <View style={styles.row}>
+                  <View style={styles.inputCol}>
+                    <TextField
+                      keyboardType="default"
+                      placeholder="Type Your Message ...."
+                      height={45}
+                    />
+                  </View>
+                  <View style={styles.btnCol}>
+                    <TouchableOpacity style={styles.contact}>
+                      <Icon name="send-outline" size={15} color="white" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Container>
+            </View>
           </View>
-        </View>
+        </SafeAreaView>
       </Fragment>
     );
   }
