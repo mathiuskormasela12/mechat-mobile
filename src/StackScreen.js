@@ -62,7 +62,11 @@ export default function StackScreen() {
   return (
     <SafeAreaView style={styles.page} onLayout={onLayoutRootView}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Auth'>
+        <Stack.Navigator initialRouteName='Auth' screenOptions={{
+          contentStyle: {
+            backgroundColor: 'white'
+          }
+        }}>
           <Stack.Screen
             name="Home"
             component={Home}
@@ -109,6 +113,6 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: Platform.OS === 'android' ? 25 : 0
+    paddingTop: Platform.OS === 'android' ? 35 : 0
   }
 })

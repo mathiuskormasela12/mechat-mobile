@@ -13,7 +13,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {launchCameraAsync, launchImageLibraryAsync} from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -21,6 +21,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Container, ModalInput, ModalButton, Alert} from '../components';
 
 export default function Profile(props) {
+  const route = useRoute();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [isVisible, setVisible] = useState(false);
@@ -29,7 +30,9 @@ export default function Profile(props) {
     placeholder: null,
     name: null,
     type: null,
+    openPost: false,
   });
+  const [isLike, setIsLike] = useState(false);
 
   const back = () => navigation.navigate('Home');
 
@@ -91,7 +94,7 @@ export default function Profile(props) {
                     />
                     <View style={styles.alert}>
                       <Alert type="danger" md>
-                        Full Name Can't be empy
+                        {state.label} Can't be empy
                       </Alert>
                     </View>
                   </View>
@@ -103,7 +106,7 @@ export default function Profile(props) {
                   <View style={styles.btnCol}>
                     <ModalButton
                       onPress={() => handleShowWrapper(null, null, null, null)}>
-                      Cancle
+                      Cancel
                     </ModalButton>
                   </View>
                 </View>
@@ -146,27 +149,65 @@ export default function Profile(props) {
               <View style={styles.boxContain}>
                 <Container style={styles.boxContainer}>
                   <View style={styles.boxCol}>
-                    <Text style={styles.name}>Im Nayeon</Text>
-                    <Text style={styles.tel}>+629521617622</Text>
+                    <Text style={styles.name}>Im Nayeon{state.openPost ? "' Posts" : ''}</Text>
+                    {state.openPost ? (
+                      <Text style={styles.tel}>1 Post</Text>
+                    ) :(
+                      <Text style={styles.tel}>+629521617622</Text>
+                    )}
                   </View>
-                  <View style={[styles.boxCol, styles.boxColFlex]}>
-                    <TouchableOpacity style={styles.buble}>
-                      <Icon name="chatbubble" color="white" size={18} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.buble}
-                      onPress={handleCamera}>
-                      <Icon name="camera" color="white" size={18} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[styles.buble, styles.removeMargin]}
-                      onPress={handleImgLibrary}>
-                      <Icon name="image" color="white" size={18} />
-                    </TouchableOpacity>
-                  </View>
+                  {route.params?.type !== 'FRIEND_PROFILE' && (
+                    <View style={[styles.boxCol, styles.boxColFlex]}>
+                      <TouchableOpacity style={styles.buble}>
+                        <Icon name="chatbubble" color="white" size={18} />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.buble}
+                        onPress={handleCamera}>
+                        <Icon name="camera" color="white" size={18} />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[styles.buble, styles.removeMargin]}
+                        onPress={handleImgLibrary}>
+                        <Icon name="image" color="white" size={18} />
+                      </TouchableOpacity>
+                    </View>
+                  )}
                 </Container>
               </View>
-              <View style={[styles.mainContainer, styles.mt]}>
+              {state.openPost ? (
+                <View style={[styles.mainContainer, styles.mt]}>
+                  <View style={styles.boxContain}>
+                    <Container style={[styles.boxContainer, styles.statusBox]}>
+                      <View style={styles.postContainer}>
+                        <Text style={styles.commentTitle}>Introduction</Text>
+                        <View style={styles.postContainerCol}>
+                          <TouchableOpacity onPress={() => setIsLike((like) => !like)}>
+                            <Icon name={isLike ? 'heart' : 'heart-outline'} color={'#5F2EEA'} size={20} />
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                      <Text style={styles.aboutText}>
+                        Hey I'm Twice Leader
+                      </Text>
+                      <View style={{marginTop: 10}}>
+                        <TouchableOpacity onPress={() =>
+                            handleShowWrapper(
+                              'Type Your comment...',
+                              'comment',
+                              'Comment',
+                              'default',
+                            )
+                          }>
+                          <Icon name={'send-outline'} color={'#5F2EEA'} size={20} />
+                        </TouchableOpacity>
+                      </View>
+                    </Container>
+                  </View>
+                </View>
+              ) : (
+                <>
+                      <View style={[styles.mainContainer, styles.mt]}>
                 <View style={styles.boxContain}>
                   <Container style={[styles.boxContainer, styles.statusBox]}>
                     <Text style={styles.aboutTitle}>About</Text>
@@ -177,95 +218,152 @@ export default function Profile(props) {
                   </Container>
                 </View>
               </View>
-              <View style={[styles.mainContainer, styles.mt]}>
-                <View style={styles.boxContain}>
-                  <Container style={[styles.boxContainer, styles.statusBox]}>
-                    <TouchableOpacity
-                      style={styles.list}
-                      onPress={() =>
-                        handleShowWrapper(
-                          'Type Your About...',
-                          'about',
-                          'About',
-                          'default',
-                        )
-                      }>
-                      <View style={[styles.buble]}>
-                        <Icon name="pencil" color="white" size={18} />
-                      </View>
-                      <Text style={styles.textList}>Edit Your About</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.list}
-                      onPress={() =>
-                        handleShowWrapper(
-                          'Type Your Full Name...',
-                          'fullName',
-                          'Full Name',
-                          'default',
-                        )
-                      }>
-                      <View style={[styles.buble]}>
-                        <Icon name="person" color="white" size={18} />
-                      </View>
-                      <Text style={styles.textList}>Edit Your Name</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.list}
-                      onPress={() =>
-                        handleShowWrapper(
-                          'Type Your Phone Number...',
-                          'phoneNumber',
-                          'Phone Number',
-                          'number-pad',
-                        )
-                      }>
-                      <View style={[styles.buble]}>
-                        <Icon name="call" color="white" size={18} />
-                      </View>
-                      <Text style={styles.textList}>
-                        Edit Your Phone Number
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.list}
-                      onPress={() =>
-                        handleShowWrapper(
-                          'Type Your Email...',
-                          'email',
-                          'Email',
-                          'email-address',
-                        )
-                      }>
-                      <View style={[styles.buble]}>
-                        <Icon name="mail" color="white" size={18} />
-                      </View>
-                      <Text style={styles.textList}>Edit Your Email</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.list}>
-                      <View style={[styles.buble]}>
-                        <Icon name="trash" color="white" size={18} />
-                      </View>
-                      <Text style={styles.textList}>Delete Account</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[styles.list, styles.removeMargin]}>
-                      <View style={[styles.buble]}>
-                        <Icon name="log-out" color="white" size={18} />
-                      </View>
-                      <Text style={styles.textList} onPress={handleLogout}>Logout</Text>
-                    </TouchableOpacity>
-                  </Container>
+              {route.params?.type === 'FRIEND_PROFILE' ? (
+                <View style={[styles.mainContainer, styles.mt]}>
+                  <View style={styles.boxContain}>
+                    <Container style={[styles.boxContainer, styles.statusBox]}>
+                      <TouchableOpacity
+                        style={styles.list}
+                      >
+                        <View style={[styles.buble]}>
+                          <Icon name="person" color="white" size={18} />
+                        </View>
+                        <Text style={styles.textList}>Add Friend</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.list}
+                      >
+                        <View style={[styles.buble]}>
+                          <Icon name="eye-outline" color="white" size={18} />
+                        </View>
+                        <Text style={styles.textList} onPress={() => setState((currentState) => ({
+                          ...currentState,
+                          openPost: true
+                        }))}>View Their Post</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.list}
+                        onPress={() =>
+                          navigation.navigate('Chat Room')
+                        }>
+                        <View style={[styles.buble]}>
+                          <Icon name="mail" color="white" size={18} />
+                        </View>
+                        <Text style={styles.textList}>Message</Text>
+                      </TouchableOpacity>
+                    </Container>
+                  </View>
                 </View>
-              </View>
+              ) : (
+                  <View style={[styles.mainContainer, styles.mt]}>
+                    <View style={styles.boxContain}>
+                      <Container style={[styles.boxContainer, styles.statusBox]}>
+                        <TouchableOpacity
+                          style={styles.list}
+                          onPress={() =>
+                            handleShowWrapper(
+                              'Type Your About...',
+                              'about',
+                              'About',
+                              'default',
+                            )
+                          }>
+                          <View style={[styles.buble]}>
+                            <Icon name="pencil" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList}>Edit Your About</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.list}
+                          onPress={() =>
+                            handleShowWrapper(
+                              'Type what you are thinking of...',
+                              'post',
+                              'Post',
+                              'default',
+                            )
+                          }>
+                          <View style={[styles.buble]}>
+                            <Icon name="add-outline" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList}>Add Post</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.list}
+                          onPress={() =>
+                            handleShowWrapper(
+                              'Type Your Full Name...',
+                              'fullName',
+                              'Full Name',
+                              'default',
+                            )
+                          }>
+                          <View style={[styles.buble]}>
+                            <Icon name="person" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList}>Edit Your Name</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.list}
+                          onPress={() =>
+                            handleShowWrapper(
+                              'Type Your Phone Number...',
+                              'phoneNumber',
+                              'Phone Number',
+                              'number-pad',
+                            )
+                          }>
+                          <View style={[styles.buble]}>
+                            <Icon name="call" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList}>
+                            Edit Your Phone Number
+                          </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.list}
+                          onPress={() =>
+                            handleShowWrapper(
+                              'Type Your Email...',
+                              'email',
+                              'Email',
+                              'email-address',
+                            )
+                          }>
+                          <View style={[styles.buble]}>
+                            <Icon name="mail" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList}>Edit Your Email</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.list}>
+                          <View style={[styles.buble]}>
+                            <Icon name="trash" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList}>Delete Account</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[styles.list, styles.removeMargin]}>
+                          <View style={[styles.buble]}>
+                            <Icon name="log-out" color="white" size={18} />
+                          </View>
+                          <Text style={styles.textList} onPress={handleLogout}>Logout</Text>
+                        </TouchableOpacity>
+                      </Container>
+                    </View>
+                  </View>
+                )}
+                </>
+              )}
             </Container>
           </View>
         </View>
-        <View style={styles.footer}>
-          <Container>
-            <Text style={styles.textFooter}>© 2023 MeChat By Mathius</Text>
-          </Container>
-        </View>
+        {!state.openPost && (
+          <View style={styles.footer}>
+            <Container>
+              <Text style={styles.textFooter}>© 2023 MeChat By Mathius</Text>
+            </Container>
+          </View>
+        )}
       </ScrollView>
     </Fragment>
   );
@@ -443,5 +541,19 @@ const styles = StyleSheet.create({
   },
   alert: {
     marginTop: 12,
+  },
+  postContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  postContainerCol: {
+    flexDirection: 'row',
+    gap: 5,
+  },
+  commentTitle: {
+    fontFamily: 'Geometria-Medium',
+    fontSize: 16,
+    color: 'black',
+    marginBottom: 10,
   },
 });

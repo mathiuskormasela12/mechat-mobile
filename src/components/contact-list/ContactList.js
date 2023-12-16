@@ -1,12 +1,17 @@
 // ===== ChatList
 // import all modules
+import { useNavigation } from '@react-navigation/native';
 import React, {Fragment} from 'react';
 import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
 export function ContactList(props) {
+  const navigation = useNavigation();
+
   return (
     <Fragment>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Profile', {
+        type: 'FRIEND_PROFILE'
+      })}>
         <View style={styles.card}>
           <View style={[styles.col, styles.little]}>
             <Image source={props.picture} style={styles.img} />

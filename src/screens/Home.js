@@ -13,7 +13,7 @@ export default function Home() {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'chats', title: 'Chats'},
-    {key: 'contacts', title: 'Contacts'},
+    {key: 'contacts', title: 'Friends'},
   ]);
 
   const renderScene = SceneMap({

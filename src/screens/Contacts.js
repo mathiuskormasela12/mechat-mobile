@@ -91,20 +91,20 @@ class Contacts extends Component {
                 <View style={styles.form}>
                   <Container style={styles.container}>
                     <View style={styles.control}>
-                      <Text style={styles.label}>Contact Name</Text>
+                      <Text style={styles.label}>Friend Name</Text>
                       <View style={styles.field}>
                         <ModalInput
-                          placeholder="Type Your Contact Name..."
+                          placeholder="Type Your Friend Name to view their profile..."
                           type="default"
                         />
                         <View style={styles.alert}>
                           <Alert type="danger" md>
-                            Contact Name Can't be empy
+                            Friend Name Can't be empy
                           </Alert>
                         </View>
                       </View>
                     </View>
-                    <View style={styles.controlZero}>
+                    {/* <View style={styles.controlZero}>
                       <Text style={styles.label}>Phone Number</Text>
                       <View style={styles.field}>
                         <ModalInput
@@ -117,14 +117,14 @@ class Contacts extends Component {
                           </Alert>
                         </View>
                       </View>
-                    </View>
+                    </View> */}
                     <View style={styles.controlBtn}>
                       <View style={styles.btnCol}>
-                        <ModalButton>Save</ModalButton>
+                        <ModalButton>Search</ModalButton>
                       </View>
                       <View style={styles.btnCol}>
                         <ModalButton onPress={this.handleShowWrapper}>
-                          Cancle
+                          Cancel
                         </ModalButton>
                       </View>
                     </View>
@@ -147,7 +147,7 @@ class Contacts extends Component {
           <TouchableOpacity
             style={styles.contact}
             onPress={this.handleShowWrapper}>
-            <Icon name="person-add-outline" size={20} color="white" />
+            <Icon name="search-outline" size={20} color="white" />
           </TouchableOpacity>
         </View>
       </Fragment>
