@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mathius.kormasela.dev.mechatmobile"
     },
     "android": {
       "adaptiveIcon": {
