@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mechat-mobile",
+    "name": "MeChat",
     "slug": "mechat-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mathius.kormasela.dev.mechatmobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a64dd6af-6d85-4a06-a528-04c9ecf9388b"
+      }
     }
   }
 }
