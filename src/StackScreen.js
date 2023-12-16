@@ -17,8 +17,9 @@ import Profile from './screens/Profile';
 
 // import all component
 import {Header, Wrapper, HeaderChat} from './components';
-import { Platform, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import Login from './screens/Login';
+import { StatusBar } from 'expo-status-bar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -60,6 +61,8 @@ export default function StackScreen() {
   }
 
   return (
+    <Fragment>
+      <StatusBar style='dark' />
     <SafeAreaView style={styles.page} onLayout={onLayoutRootView}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Auth' screenOptions={{
@@ -106,6 +109,7 @@ export default function StackScreen() {
       </NavigationContainer>
       {showWrapper && <Wrapper />}
     </SafeAreaView>
+    </Fragment>
   );
 }
 
@@ -113,6 +117,5 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: Platform.OS === 'android' ? 35 : 0
   }
 })
