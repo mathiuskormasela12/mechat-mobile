@@ -11,22 +11,22 @@ MeChat is social media application that is written in React Native.
 ## Preview Project
 
 ### Sign In
-[<img src="screenshoot/sign up.jpeg" width="350" height="800" />]
+<img src="screenshoot/sign up.jpeg" width="350" height="800" />
 
 ### Sign In
-[<img src="screenshoot/sign in.jpeg" width="350" height="800" />]
+<img src="screenshoot/sign in.jpeg" width="350" height="800" />
 
 ### Add Full Name
-[<img src="screenshoot/full name.jpeg" width="350" height="800" />]
+<img src="screenshoot/full name.jpeg" width="350" height="800" />
 
 ### Email Code (OTP)
-[<img src="screenshoot/email code.jpeg" width="350" height="800" />]
+<img src="screenshoot/email code.jpeg" width="350" height="800" />
 
 ### Chat Room
-[<img src="screenshoot/chat room.jpeg" width="350" height="800" />]
+<img src="screenshoot/chat room.jpeg" width="350" height="800" />
 
 ### Chat List
-[<img src="screenshoot/chat list.jpeg" width="350" height="800" />]
+<img src="screenshoot/chat list.jpeg" width="350" height="800" />
 
 ### My Profile
-[<img src="screenshoot/my profile.jpeg" width="350" height="800" />]
+<img src="screenshoot/my profile.jpeg" width="350" height="800" />
