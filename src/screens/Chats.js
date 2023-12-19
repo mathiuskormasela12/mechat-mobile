@@ -7,6 +7,9 @@ import {View, FlatList, StyleSheet} from 'react-native';
 import {ChatList} from '../components';
 
 import profile from '../assets/img/profile.png';
+import wira from '../assets/img/wira.jpeg';
+import fauzi from '../assets/img/fauzi.jpeg';
+import mathius from '../assets/img/mathius.jpeg';
 
 class Chats extends Component {
   constructor() {
@@ -14,32 +17,39 @@ class Chats extends Component {
     this.state = {
       messages: [
         {
-          name: 'Nayeon',
-          message: 'Hai, Mathius lgi ngapain ?',
+          name: 'Mathius',
+          message: 'Hai, lgi ngapain ?',
+          photo: mathius
         },
         {
-          name: 'Mina',
-          message: 'Hai, Mathius lgi ngapain ?',
+          name: 'Fauzi',
+          message: 'Hai, lgi ngapain ?',
+          photo: fauzi
         },
         {
-          name: 'Sana',
-          message: 'Hai, Mathius lgi ngapain ?',
+          name: 'Wira',
+          message: 'Hai, lgi ngapain ?',
+          photo: wira,
         },
         {
           name: 'Tzuyu',
-          message: 'Hai, Mathius lgi ngapain ?',
+          message: 'Hai, lgi ngapain ?',
+          photo: profile
         },
         {
           name: 'Momo',
-          message: 'Hai, Mathius lgi ngapain ?',
+          message: 'Hai, lgi ngapain ?',
+          photo: profile
         },
         {
           name: 'Jihyo',
-          message: 'Hai, Mathius lgi ngapain ?',
+          message: 'Hai, lgi ngapain ?',
+          photo: profile
         },
         {
           name: 'Dahyun',
           message: 'Kamu klo nyebut nama...',
+          photo: profile
         },
       ],
     };
@@ -54,7 +64,7 @@ class Chats extends Component {
             keyExtractor={(item, index) => String(index)}
             renderItem={({item}) => (
               <ChatList
-                picture={profile}
+                picture={item.photo}
                 name={item.name}
                 message={item.message}
               />

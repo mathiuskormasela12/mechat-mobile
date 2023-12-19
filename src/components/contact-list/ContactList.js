@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 50,
     width: 50,
+    borderRadius: 50
   },
   card: {
     width: '100%',

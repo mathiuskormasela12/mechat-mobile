@@ -30,6 +30,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {showWrapper} from '../redux/actions/loading';
 
 import profile from '../assets/img/profile.png';
+import mathius from '../assets/img/mathius.jpeg';
+import wira from '../assets/img/wira.jpeg';
+import fauzi from '../assets/img/fauzi.jpeg';
+import nayeon from '../assets/img/nayeon.jpeg';
 
 class Contacts extends Component {
   constructor() {
@@ -37,32 +41,39 @@ class Contacts extends Component {
     this.state = {
       contacts: [
         {
-          name: 'Nayeon',
+          name: 'Mathius',
           status: 'Available',
+          photo: mathius
         },
         {
-          name: 'Mina',
+          name: 'Wira',
           status: 'Avaliable',
+          photo: wira
         },
         {
-          name: 'Sana',
+          name: 'Fauzi',
           status: 'Busy',
+          photo: fauzi
         },
         {
-          name: 'Tzuyu',
+          name: 'Im Nayeon',
           status: 'Listening Music',
+          photo: nayeon
         },
         {
           name: 'Momo',
           status: 'Busy',
+          photo: profile
         },
         {
           name: 'Jihyo',
           status: 'Busy',
+          photo: profile
         },
         {
           name: 'Dahyun',
           status: 'Busy',
+          photo: profile
         },
       ],
       isVisible: false,
@@ -138,7 +149,7 @@ class Contacts extends Component {
             keyExtractor={(item, index) => String(index)}
             renderItem={({item}) => (
               <ContactList
-                picture={profile}
+                picture={item.photo}
                 name={item.name}
                 status={item.status}
               />
