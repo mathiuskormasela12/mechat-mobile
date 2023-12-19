@@ -10,7 +10,7 @@ MeChat is social media application that is written in React Native.
 
 ## Preview Project
 
-### Sign In
+### Sign Up
 <img src="screenshoot/sign up.jpeg" width="350" height="800" />
 
 ### Sign In
@@ -30,3 +30,6 @@ MeChat is social media application that is written in React Native.
 
 ### My Profile
 <img src="screenshoot/my profile.jpeg" width="350" height="800" />
+
+### Friends
+<img src="screenshoot/friend.jpeg" width="350" height="800" />
