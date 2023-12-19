@@ -33,3 +33,15 @@ MeChat is social media application that is written in React Native.
 
 ### Friends
 <img src="screenshoot/friend.jpeg" width="350" height="800" />
+
+### Commentar
+<img src="screenshoot/comment.jpeg" width="350" height="800" />
+
+### Add Post
+<img src="screenshoot/add post.jpeg" width="350" height="800" />
+
+### Search Friend
+<img src="screenshoot/search friend.jpeg" width="350" height="800" />
+
+### Friend Profile
+<img src="screenshoot/friend profile.jpeg" width="350" height="800" />
